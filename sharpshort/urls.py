@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from apps.short.views import ShorteningView, IndexView
+from django.urls import path, re_path
+from apps.short.views import (
+    ShorteningView,
+    IndexView,
+    RedirectView,
+    RedirectPreviewView,
+)
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("myadmin/", admin.site.urls),
     path("shorten/create/", ShorteningView.as_view()),
-    path("index/", IndexView.as_view()),
+    path("/", IndexView.as_view()),
+    re_path("preview/(?P<url_path>[0-9A-Za-z]{5})/", RedirectPreviewView.as_view()),
+    re_path("(?P<url_path>[0-9A-Za-z]{5})/", RedirectView.as_view()),
 ]

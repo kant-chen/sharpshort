@@ -1,6 +1,5 @@
 import json
 
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.db import transaction
@@ -44,3 +43,28 @@ class ShorteningView(APIView):
 class IndexView(View):
     def get(self, request):
         return render(request, "index.html")
+
+
+class RedirectView(View):
+    def get(self, request, url_path):
+        try:
+            shorting = Shorting.objects.get(path=url_path)
+        except Shorting.DoesNotExist:
+            return HttpResponse("Page not found!", 404)
+
+        return HttpResponseRedirect(shorting.destination)
+
+
+class RedirectPreviewView(View):
+    def get(self, request, url_path):
+        try:
+            shorting = Shorting.objects.get(path=url_path)
+        except Shorting.DoesNotExist:
+            return HttpResponse(f"This shortening path does not exist: {url_path}", 404)
+
+        return HttpResponse(
+            (
+                f"The destination of the short URL: {shorting.short_url} is:<br><br>"
+                f"<a href={shorting.destination}>{shorting.destination}</a>"
+            )
+        )
