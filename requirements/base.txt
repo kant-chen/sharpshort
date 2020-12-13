@@ -1,0 +1,26 @@
+# postgres engine
+psycopg2-binary==2.8.4
+
+# Django
+Django==2.2.10 # https://www.djangoproject.com/
+
+# enable cross-site resource sharing with frontend
+django-cors-headers==2.4.0 # https://github.com/ottoyiu/django-cors-headers/
+
+# enable dynamic filter
+django-filter==2.2.0 # https://github.com/carltongibson/django-filter
+
+# all sorts of django extras like shell_plus
+django-extensions==2.2.8 # https://github.com/django-extensions/django-extensions
+
+# print colored terminal text
+colorama==0.4.3 # https://github.com/tartley/colorama
+
+# ipython
+ipython==7.12.0
+
+# django rest framework
+djangorestframework==3.11.0
+django-rest-auth==0.9.5
+
+# others

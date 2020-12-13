@@ -1,0 +1,32 @@
+version: '3'
+networks:
+  backend:
+services:
+  sharpshort-db:
+    image: postgres:10.4-alpine
+    container_name: sharpshort-db
+    ports:
+      - "5438:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+  sharpshort-backend:
+    container_name: sharpshort-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /code
+    env_file:
+      - ./sharpshort_dev.env
+    volumes:
+      - .:/code
+    ports:
+      - "8066:8000"
+    depends_on:
+      - sharpshort-db
+    networks:
+      - backend
+
+volumes:
+  postgres-data:

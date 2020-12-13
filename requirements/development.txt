@@ -1,0 +1,8 @@
+-r ./base.txt
+
+# code linting and formatting
+black==19.10b0
+flake8==3.7.9
+
+# for creating test data, alternative to fixtures
+factory_boy==2.12.0 # https://factoryboy.readthedocs.io/en/latest/
