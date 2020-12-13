@@ -46,6 +46,7 @@ BUILD_IN_APPS = [
 
 CUSTOM_APPS = [
     "apps.user",
+    "apps.short",
 ]
 
 THIRD_PARTY_APPS = [
