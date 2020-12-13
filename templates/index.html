@@ -1,0 +1,58 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SharpShort</title>
+</head>
+<style>
+.error_msg {
+  color: red;
+}
+</style>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<body>
+<h1>
+  Welcome to SharpShort
+</h1>
+<div>
+  <label for="url_input">Destination URL: </label>
+  <input type="text" id="url_input" name="url_input" size="50">
+  <input type="button" id="shorten" class="button" name="shorten" value="Shorten">
+  <br>
+  <span id="url_error" class="error_msg"></span>
+  <br>
+  <br>
+  <label for="short_url">Shortened URL: &nbsp;</label>
+  <input type="text" id="short_url" name="short_url">
+</div>
+</body>
+<script>
+function init_state() {
+  $("#url_error")[0].innerHTML = ""
+  $("#short_url")[0].value = ""
+}
+async function shoten_url () {
+  init_state()
+  const url = $("#url_input")[0].value
+  const response = await fetch(
+    `/shorten/create/?destination=${url}`,
+    {"Content-Type" : "application/json", "method": "post"}
+  );
+  if (response.status === 200) {
+    return await response.json();
+  }
+}
+$(document).ready(function (){
+  $("#shorten").on("click", async function() {
+    let response_text = await shoten_url()
+    if (response_text.error != undefined) {
+      $("#url_error")[0].innerHTML = response_text.error
+    } else {
+      $("#short_url")[0].value = response_text.data.path
+    }
+  })
+})
+</script>
+</html>
