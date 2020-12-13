@@ -30,12 +30,13 @@ class Shorting(models.Model):
     @classmethod
     def pre_generate(cls, count=100):
         last_shorting = cls.objects.order_by("-created_at").first()
+        cnt = 0
         if not last_shorting:
             last_shorting = cls.objects.create(
                 path=LETTERS[0] * cls.MAX_LETTER, is_valid=False
             )
+            cnt += 1
         next_path = last_shorting.path
-        cnt = 0
         for i in range(count):
             next_path = cls.get_next_path(next_path)
             cls.objects.create(path=next_path, is_valid=False)
