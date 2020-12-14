@@ -25,7 +25,7 @@ from apps.short.views import (
 urlpatterns = [
     path("myadmin/", admin.site.urls),
     path("shorten/create/", ShorteningView.as_view()),
-    path("/", IndexView.as_view()),
+    path("", IndexView.as_view()),
     re_path("preview/(?P<url_path>[0-9A-Za-z]{5})/", RedirectPreviewView.as_view()),
     re_path("(?P<url_path>[0-9A-Za-z]{5})/", RedirectView.as_view()),
 ]
