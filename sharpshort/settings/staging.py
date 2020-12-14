@@ -165,8 +165,7 @@ LOGGING = {
     "handlers": {
         "debug": {
             "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": LOG_BASE_DIR + "/debug.log",  # noqa: F405
+            "class": "logging.StreamHandler",
             "formatter": "generic",
         },
     },
