@@ -185,7 +185,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 # use custom user model
 # AUTH_USER_MODEL = 'users.User'
 
-SERVER_URL = "https://sharpshort.herokuapp.com/"
+SERVER_URL = os.environ.get("SERVER_URL")
 
 # heroku integration (Please always put this line on the bottom of this file)
 django_heroku.settings(locals(), logging=False)

@@ -177,6 +177,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 
-SERVER_URL = "http://lvh.me:8066/"
+SERVER_URL = os.environ.get("SERVER_URL")
 # use custom user model
 # AUTH_USER_MODEL = 'users.User'
