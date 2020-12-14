@@ -25,7 +25,7 @@ SECRET_KEY = "wwe$)cg*=d7arjad9=%#iufx7$=8h8jq5a+mfjlw9z7gl0#%rl"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", True)
 
-ALLOWED_HOSTS = ["127.0.0.1", "lvh.me"]
+ALLOWED_HOSTS = ["127.0.0.1", "lvh.me", "testserver"]
 
 # Get database name/user from environmental variables
 DEV_DB_NAME = os.environ.get("POSTGRES_DB", "sharpshort_default")

@@ -32,7 +32,7 @@ class Shorting(models.Model):
             last_shorting = cls.objects.create(
                 path=LETTERS[0] * cls.MAX_LETTER, is_valid=False
             )
-            cnt += 1
+            count -= 1
         next_path = last_shorting.path
         for i in range(count):
             next_path = cls.get_next_path(next_path)
