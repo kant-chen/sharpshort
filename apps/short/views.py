@@ -58,7 +58,7 @@ class RedirectView(View):
 class RedirectPreviewView(View):
     def get(self, request, url_path):
         try:
-            shorting = Shorting.objects.get(path=url_path)
+            shorting = Shorting.objects.get(path=url_path, is_valid=True)
         except Shorting.DoesNotExist:
             return HttpResponse(f"This shortening path does not exist: {url_path}", 404)
 
